@@ -10,9 +10,11 @@ Some initial questions include:
   -	There are three types of sources to be looked into: title, (tech) summary, expected impact. Should the counts be independent, or analysed in a combined method?
 
 Data tables/fields involved:
-  ukri_ssd.dbo.ssd_applications
+
+ukri_ssd.dbo.ssd_applications
   - application_title
-  ukri_ssd.dbo.ssd_notes
+
+ukri_ssd.dbo.ssd_notes
   - summary_abstract
   - technical_abstract
   - expected_impact
