@@ -1,0 +1,17 @@
+--application and notes table joined to evaluate minimal description for title and abstract
+
+select a.application_reference, a.award_reference, a.owner, a.source, a.administrator, a.application_category, a.application_status, a.derived_status, convert(date, a.decision_date) as decision_date, year(a.decision_date) as decision_year, a.application_title, a.amount_applied_for, a.scheme, convert(date, a.date_last_received) as date_last_received, n.summary_abstract, n.technical_abstract, n.expected_impact
+
+from 
+ukri_ssd.dbo.ssd_applications a
+left join ukri_ssd.dbo.ssd_notes n
+on a.application_reference = n.application_reference
+
+where
+len(a.application_title) - len(replace(a.application_title,' ','')) < 2	
+or len(n.summary_abstract) - len(replace(n.summary_abstract,' ','')) < 3
+or len(n.technical_abstract) - len(replace(n.technical_abstract,' ','')) < 3
+or len(n.expected_impact) - len(replace(n.expected_impact,' ','')) < 3 --number of words
+
+order by 
+a.decision_date
